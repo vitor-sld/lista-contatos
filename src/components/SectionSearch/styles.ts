@@ -5,7 +5,8 @@ export const Section = styled.section`
 height: 96px;
 background-color: ${colors.searchBackground};
 width: 100%;
-
+border-bottom: 1px solid ${colors.backgroundHeader};
+margin-bottom: 10px;
 
 >div{
     height: 100%;
@@ -23,12 +24,5 @@ width: 100%;
 border-radius: 10px;
 border: none;
 height: 40px;
-`
-
-export const Button = styled.button`
-flex: 1;
-border-radius: 100%;
-max-width: 40px;
-height: 40px;
-border: 1px solid ${colors.border};
+background-color: ${colors.backgroundHeader};
 `

@@ -8,6 +8,17 @@ border-bottom: 1px solid ${colors.border};
 display: flex;
 align-items: center;
 
+button{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    img{
+        width: 24px;
+        height: 24px;
+        object-fit: cover;
+    }
+}
+
 `
 export const Row = styled.div`
 display: flex;
@@ -24,7 +35,7 @@ margin: auto;
     align-items: center;
     
     button{
-        margin-right: 15px;
+        margin-right: 20px;
     }
 }
 
@@ -32,9 +43,13 @@ margin: auto;
 export const Infos = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: flex-start;
 align-items: flex-start;
-width: 200px;
+max-width: 400px;
+margin-left: 30px;
+text-align: left;
+text-transform: capitalize;
+
 
 h4{
     font-size: 18px;
@@ -48,11 +63,10 @@ export const DivImage = styled.div`
     height: 50px;
     border-radius: 50%;
     text-align: center;
-
-
 `
 
 export const MenuButtons = styled.div`
 position: absolute;
 right: 0%;
+
 `

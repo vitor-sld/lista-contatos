@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { add, edit, modalClose } from '../../store/reducers/contatos'
 import { useEffect, useState } from 'react'
+import InputMask from 'react-input-mask'
+
+import { add, edit, modalClose } from '../../store/reducers/contatos'
+import { RootReducer } from '../../store'
 
 import * as S from './styles'
-import { RootReducer } from '../../store'
 
 
 const Modal = () => {
@@ -14,18 +16,30 @@ const Modal = () => {
     const [email, setEmail] = useState('')
     const [color, setColor] = useState('#000000')
 
+    const { contatos, editContact,isOpen } = useSelector((state: RootReducer)=> state.contatos)
 
     const dispatch = useDispatch()
 
     const registerContact = (name: string, surname: string, number: string, email: string, color: string) => {
-        dispatch(add({ name, surname, number, email, color }))
+        
+        name = name.toLowerCase()
+        surname = surname.toLowerCase()
+        
+        dispatch(add({
+            name, surname, number, email, color,
+            id: `${contatos.length + 1}`
+        }))
     }
 
     const editFunction = (name: string, surname: string, number: string, email: string, color: string) => {
-        dispatch(edit({ name, surname, number, email, color }))
-    }
+        name = name.toLowerCase()
+        surname = surname.toLowerCase()
 
-    const { isOpen, editContact } = useSelector((state: RootReducer) => state.contatos)
+        dispatch(edit({
+            name, surname, number, email, color,
+            id: `${editContact!.id}`
+        }))
+    }
 
     useEffect(() => { 
         if (editContact !== null) {
@@ -56,7 +70,7 @@ const Modal = () => {
                     </S.InputGroup>
                     <S.InputGroup>
                         <S.Label htmlFor="phoneNumber">Número*</S.Label>
-                        <S.Input type="number" id="phoneNumber" name="phoneNumber" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
+                        <InputMask className='input' type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} mask='99 99999-9999' />
                     </S.InputGroup>
                     <S.InputGroup>
                         <S.Label>Email</S.Label>

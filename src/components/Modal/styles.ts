@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { colors } from "../../styles"
+import { breakpoints, colors } from "../../styles"
+import InputMask from 'react-input-mask'
 
 export const Modal = styled.div`
 display: none;
@@ -46,10 +47,24 @@ export const ContainerModal = styled.div`
         grid-template-columns: 1fr 1fr;
         gap: 20px 40px;
     }
+    @media (max-width: ${breakpoints.mobile}){
+        top: 100px;
+        left: 0;
+        width: 90vw;
+        left: 5vw;
+        height: auto;
+
+        >form{
+            grid-template-columns: 1fr;
+        }
+    }
 `
 
 export const InputGroup = styled.div`
-
+.input{
+    width: 100%;
+    padding: 8px 16px;
+}
 `
 
 export const Label = styled.label`
@@ -75,6 +90,12 @@ position: absolute;
 right: 30px;
 bottom: 30px;
 width: 300px;
+
+@media (max-width: ${breakpoints.mobile}){
+    position: static;
+    display: block;
+
+}
 `
 
 export const ButtonModal = styled.button`
@@ -88,10 +109,16 @@ width: 100%;
 display: block;
 transition: .5s ease;
 
+@media (max-width: ${breakpoints.mobile}){
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
 &.submit{
     border: 1px solid rgb(64,199,61);
     color: rgb(64,199,61);
     font-weight: bold;
+    margin-right: 16px;
     
     &:hover{
     background-color: green;
